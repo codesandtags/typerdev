@@ -1,35 +1,35 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface WordContainerProps {
   words: string[];
-  onMissedWord: (word: string) => void;
+  onMissedWord: () => void;
+  level: number;
 }
 
-const WordContainer: React.FC<WordContainerProps> = ({ words, onMissedWord }) => {
+const WordContainer: React.FC<WordContainerProps> = ({ words, onMissedWord, level }) => {
   const [positions, setPositions] = useState<{ [key: string]: number }>({});
 
-  const updatePositions = useCallback(() => {
-    setPositions(prev => {
-      const newPositions = { ...prev };
-      words.forEach(word => {
-        if (!(word in newPositions)) {
-          newPositions[word] = 0;
-        } else {
-          newPositions[word] += 1;
-          if (newPositions[word] >= 100) {
-            onMissedWord(word);
-            delete newPositions[word];
-          }
-        }
-      });
-      return newPositions;
-    });
-  }, [words, onMissedWord]);
-
   useEffect(() => {
-    const interval = setInterval(updatePositions, 50);
+    const interval = setInterval(() => {
+      setPositions(prev => {
+        const newPositions = { ...prev };
+        words.forEach(word => {
+          if (!(word in newPositions)) {
+            newPositions[word] = 0;
+          } else {
+            newPositions[word] += 0.5 * level;
+            if (newPositions[word] >= 100) {
+              onMissedWord();
+              delete newPositions[word];
+            }
+          }
+        });
+        return newPositions;
+      });
+    }, 50);
+
     return () => clearInterval(interval);
-  }, [updatePositions]);
+  }, [words, onMissedWord, level]);
 
   return (
     <div className="w-full h-96 relative overflow-hidden bg-gray-800 rounded-lg mb-4">
