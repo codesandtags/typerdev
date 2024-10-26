@@ -17,22 +17,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-300 flex flex-col">
-      <header className="bg-gray-800 p-4">
-        <h1 className="text-2xl font-bold flex items-center">
-          <FileTerminal /> TyperDev
-        </h1>
-      </header>
-      <main className="flex-grow flex flex-col items-center justify-center p-4">
-        <LanguageSelector
-          languages={languages}
-          onSelect={handleLanguageSelect}
-        />
+    <div className="min-h-screen text-gray-300 flex flex-col">
+      <header className=" p-4"></header>
+      {/* <LanguageSelector languages={languages} onSelect={handleLanguageSelect} /> */}
+      <main className="flex-grow flex">
         <CodeDisplay code={codeSnippet} />
       </main>
-      <footer className="bg-gray-800 p-4 text-center flex items-center flex-col">
-        <div className="w-24 px-2 py-1 bg-gray-700 rounded text-sm mb-2">
-          <code className="font-mono text-green-400">TyperDev</code>
+      <footer className=" p-4 text-center flex items-center flex-col">
+        <div className="w-24 px-2 py-1 0 rounded text-sm mb-2">
+          <FileTerminal className="inline-block" />
+          <span className="font-mono">TyperDev</span>
         </div>
         <div className="text-xs">&copy; 2024 v.0.0.1 - codesandtags </div>
       </footer>

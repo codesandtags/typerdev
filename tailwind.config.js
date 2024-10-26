@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       colors: {
         typerdev: {
-          background: '#282a36',
+          background: '#23272f',
+          terminal: '#16181d',
           currentLine: '#44475a',
           foreground: '#f8f8f2',
           comment: '#6272a4',

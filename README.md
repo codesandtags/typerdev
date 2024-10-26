@@ -1,6 +1,6 @@
-# CodeType
+# TyperDev
 
-CodeType is a web-based typing game designed specifically for developers to enhance their typing speed and accuracy when working with code. Inspired by monkeytype.com, CodeType offers language-specific code snippets to help developers practice and improve their skills in typing actual code.
+TyperDev is a web-based typing game designed specifically for developers to enhance their typing speed and accuracy when working with code. Inspired by monkeytype.com, TyperDev offers language-specific code snippets to help developers practice and improve their skills in typing actual code.
 
 ## Features
 
@@ -19,11 +19,11 @@ CodeType is a web-based typing game designed specifically for developers to enha
 
 ### Installation
 
-To get started with CodeType, clone this repository and install the dependencies.
+To get started with TyperDev, clone this repository and install the dependencies.
 
 ```bash
-git clone https://github.com/yourusername/codetype.git
-cd codetype
+git clone https://github.com/yourusername/TyperDev.git
+cd TyperDev
 npm install
 ```
 
@@ -63,10 +63,10 @@ Before contributing, please make sure to review the Code of Conduct.
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Social Media Sharing
-Once you finish a typing session, the app will generate a summary of your typing speed, accuracy, and other stats. You can share your performance on social media with a simple click to engage with the developer community and help spread the word about CodeType.
+Once you finish a typing session, the app will generate a summary of your typing speed, accuracy, and other stats. You can share your performance on social media with a simple click to engage with the developer community and help spread the word about TyperDev.
 
 Feedback & Support
-Feel free to open an issue if you encounter any bugs, have feature requests, or need assistance. Your feedback is valuable and helps make CodeType better!
+Feel free to open an issue if you encounter any bugs, have feature requests, or need assistance. Your feedback is valuable and helps make TyperDev better!
 
 ## Roadmap
 
