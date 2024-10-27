@@ -5,7 +5,6 @@ const useTypedCode = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      event.preventDefault();
       // Ignore keys that do not produce a character
       if (
         event.key === 'Shift' ||
@@ -13,8 +12,6 @@ const useTypedCode = () => {
         event.key === 'Alt' ||
         event.key === 'Meta' ||
         event.key === 'Command' ||
-        event.key === 'Tab' ||
-        event.key === 'Dead' ||
         event.key === 'ArrowLeft' ||
         event.key === 'ArrowRight' ||
         event.key === 'ArrowUp' ||
@@ -39,7 +36,9 @@ const useTypedCode = () => {
     };
   }, []);
 
-  return typedCode;
+  const resetTypedCode = () => setTypedCode('');
+
+  return [typedCode, resetTypedCode] as const;
 };
 
 export default useTypedCode;

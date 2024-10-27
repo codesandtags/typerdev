@@ -19,6 +19,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         onChange={(e) => onSelect(e.target.value)}
         className="mx-2 p-2 bg-gray-800 text-gray-300 rounded mt-2"
       >
+        <option />
         {languages.map((lang) => (
           <option key={lang} value={lang}>
             {lang}
