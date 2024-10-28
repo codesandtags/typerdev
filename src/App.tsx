@@ -30,18 +30,18 @@ const App: React.FC = () => {
   }, [language]);
 
   return (
-    <div className="min-h-screen text-gray-300 flex flex-col">
-      <header className=" p-4">
+    <div className="flex min-h-screen flex-col bg-slate-900 text-gray-300">
+      <header className="p-4">
         <LanguageSelector
           languages={languages}
           onSelect={handleLanguageSelect}
         />
       </header>
-      <main className="flex-grow flex">
+      <main className="flex flex-grow">
         <CodeDisplay codeSnippet={codeSnippet} />
       </main>
-      <footer className=" p-4 text-center flex items-center flex-col">
-        <div className="w-24 px-2 py-1 0 rounded text-sm mb-2">
+      <footer className="flex flex-col items-center p-4 text-center">
+        <div className="0 mb-2 w-24 rounded px-2 py-1 text-sm">
           <FileTerminal className="inline-block" />
           <span className="font-mono">TyperDev</span>
         </div>
