@@ -6,15 +6,14 @@ interface TitleBarProps {
 
 const TitleBar: React.FC<TitleBarProps> = ({ title }) => {
   return (
-    <div className="flex items-center justify-between p-2 bg-slate-950 rounded-t-lg">
-      <div className="flex space-x-2">
-        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+    <div className="flex h-7 w-full items-center justify-between bg-slate-700 px-2 sm:rounded-t-lg">
+      <div className="flex items-center gap-2">
+        <div className="invisible size-3 rounded-full bg-red-500 sm:visible"></div>
+        <div className="invisible size-3 rounded-full bg-yellow-500 sm:visible"></div>
+        <div className="invisible size-3 rounded-full bg-green-500 sm:visible"></div>
       </div>
-      <h2 className="text-center text-dracula-foreground">{title}</h2>
-      <div className="w-12"></div>{' '}
-      {/* Placeholder to balance the flex layout */}
+      <div className="font-mono text-sm text-gray-200">{title}</div>
+      <div className="h-3 w-14"></div>
     </div>
   );
 };

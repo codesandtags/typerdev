@@ -11,15 +11,14 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 }) => {
   return (
     <div className="p-4">
-      <label className="text-xl font-bold" htmlFor="selectProgrammingLanguage">
-        Select Programming Language
+      <label className="text-sm" htmlFor="selectProgrammingLanguage">
+        Programming Language
       </label>
       <select
         id="selectProgrammingLanguage"
         onChange={(e) => onSelect(e.target.value)}
-        className="mx-2 p-2 bg-gray-800 text-gray-300 rounded mt-2"
+        className="mx-2 mt-2 rounded bg-gray-800 p-2 text-sm text-gray-300"
       >
-        <option />
         {languages.map((lang) => (
           <option key={lang} value={lang}>
             {lang}

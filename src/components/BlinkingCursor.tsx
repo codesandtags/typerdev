@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 const BlinkingCursor: React.FC = () => {
   return (
     <motion.span
-      className="bg-typerdev-yellow mt-2"
+      className="mt-2 bg-yellow-200"
       style={{
         display: 'inline-block',
         width: '14px',
         height: '1em',
-        position: 'relative',
-        top: '0.125em',
+        position: 'absolute',
+        top: '-0.4rem',
+        left: '0',
       }}
       animate={{ opacity: [0, 1] }}
       transition={{ repeat: Infinity, duration: 0.8 }}

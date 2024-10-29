@@ -7,7 +7,7 @@ import { FileTerminal } from 'lucide-react';
 const App: React.FC = () => {
   const { language, setLanguage } = useContext(AppContext);
   const [codeSnippet, setCodeSnippet] = useState<string>(''); // Placeholder for code snippet
-  const languages = ['JavaScript', 'Python', 'Java', 'C++', 'Go']; // Example languages
+  const languages = ['JavaScript', 'Python', 'Java', 'Cpp', 'Go']; // Example languages
 
   const handleLanguageSelect = (selectedLanguage: string) => {
     setCodeSnippet('');
@@ -30,17 +30,17 @@ const App: React.FC = () => {
   }, [language]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-900 text-gray-300">
-      <header className="p-4">
+    <div className="flex h-screen w-screen flex-col bg-gray-800 text-gray-300">
+      <main className="flex flex-grow justify-center px-4 py-8">
+        <CodeDisplay codeSnippet={codeSnippet} />
+      </main>
+      <div className="mx-auto">
         <LanguageSelector
           languages={languages}
           onSelect={handleLanguageSelect}
         />
-      </header>
-      <main className="flex flex-grow">
-        <CodeDisplay codeSnippet={codeSnippet} />
-      </main>
-      <footer className="flex flex-col items-center p-4 text-center">
+      </div>
+      <footer className="flex items-center justify-between p-4 text-center">
         <div className="0 mb-2 w-24 rounded px-2 py-1 text-sm">
           <FileTerminal className="inline-block" />
           <span className="font-mono">TyperDev</span>
