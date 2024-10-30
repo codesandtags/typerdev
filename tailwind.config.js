@@ -56,6 +56,19 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        typerdev: {
+          background: '#282a36', // Dracula Background
+          currentLine: '#44475a', // Dracula Current Line
+          foreground: '#f8f8f2', // Dracula Foreground
+          comment: '#6272a4', // Dracula Comment
+          cyan: '#8be9fd', // Dracula Cyan
+          green: '#50fa7b', // Dracula Green
+          orange: '#ffb86c', // Dracula Orange
+          pink: '#ff79c6', // Dracula Pink
+          purple: '#bd93f9', // Dracula Purple
+          red: '#ff5555', // Dracula Red
+          yellow: '#f1fa8c', // Dracula Yellow
+        },
       },
       borderRadius: {
         lg: `var(--radius)`,

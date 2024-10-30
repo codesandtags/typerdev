@@ -42,7 +42,7 @@ const App: React.FC = () => {
       </div>
       <footer className="flex items-center justify-between p-4 text-center">
         <div className="0 mb-2 w-24 rounded px-2 py-1 text-sm">
-          <FileTerminal className="inline-block" />
+          <FileTerminal className="inline-block text-typerdev-green" />
           <span className="font-mono">TyperDev</span>
         </div>
         <div className="text-xs">&copy; 2024 v.0.0.1 - codesandtags </div>

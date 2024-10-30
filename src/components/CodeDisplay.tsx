@@ -8,7 +8,7 @@ interface CodeDisplayProps {
 }
 
 const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
-  const [typedCode] = useTypedCode();
+  const [typedCode, resetTypedCode] = useTypedCode();
   const [correctWords, setCorrectWords] = useState<number>(0);
   const [correctLetters, setCorrectLetters] = useState<number>(0);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -75,6 +75,15 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
   const timeTaken =
     startTime && endTime ? ((endTime - startTime) / 1000).toFixed(2) : null;
 
+  const startNewGame = () => {
+    resetTypedCode();
+    setCorrectWords(0);
+    setCorrectLetters(0);
+    setIsFinished(false);
+    setStartTime(null);
+    setEndTime(null);
+  };
+
   return (
     <div className="flex w-full max-w-4xl flex-col items-center justify-start rounded-lg bg-slate-900 shadow-lg">
       <TitleBar title="Code Snippet.js" />
@@ -89,6 +98,12 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
           </p>
           <p>Accuracy: {accuracy}%</p>
           <p>Time Taken: {timeTaken} seconds</p>
+          <button
+            onClick={startNewGame}
+            className="mt-4 rounded bg-typerdev-purple p-2 text-typerdev-foreground"
+          >
+            Start New Game
+          </button>
         </div>
       ) : (
         <>
