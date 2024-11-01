@@ -20,11 +20,15 @@ const useTypedCode = () => {
         return;
       }
 
+      // Regular expression to match allowed characters
+      const allowedCharacters =
+        /^[a-zA-Z0-9`~!@#$%^&*()_\-+={}[\]|\\:;"'<>,.?/ ]$/;
+
       if (event.key === 'Enter') {
         setTypedCode((prev) => prev + '\n');
       } else if (event.key === 'Backspace') {
         setTypedCode((prev) => prev.slice(0, -1));
-      } else {
+      } else if (allowedCharacters.test(event.key)) {
         setTypedCode((prev) => prev + event.key);
       }
     };

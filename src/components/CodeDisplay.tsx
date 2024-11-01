@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react';
 import TitleBar from './TitleBar';
 import BlinkingCursor from './BlinkingCursor';
 import useTypedCode from '../hooks/useTypedCode';
+import Confetti from 'react-confetti';
 
 interface CodeDisplayProps {
   codeSnippet: string;
+  isFinished: boolean;
+  setIsFinished: (value: boolean) => void;
+  startTime: number | null;
+  setStartTime: (value: number | null) => void;
+  endTime: number | null;
+  setEndTime: (value: number | null) => void;
 }
 
-const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
+const CodeDisplay: React.FC<CodeDisplayProps> = ({
+  codeSnippet,
+  isFinished,
+  setIsFinished,
+  startTime,
+  setStartTime,
+  endTime,
+  setEndTime,
+}) => {
   const [typedCode, resetTypedCode] = useTypedCode();
   const [correctWords, setCorrectWords] = useState<number>(0);
   const [correctLetters, setCorrectLetters] = useState<number>(0);
-  const [isFinished, setIsFinished] = useState<boolean>(false);
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [endTime, setEndTime] = useState<number | null>(null);
+  const [currentCursorPosition, setCurrentCursorPosition] = useState<number>(0);
 
   useEffect(() => {
     if (typedCode.length === 1 && startTime === null) {
@@ -48,23 +61,47 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
       setIsFinished(true);
       setEndTime(Date.now());
     }
-  }, [typedCode, codeSnippet, startTime]);
+  }, [typedCode, codeSnippet, startTime, setIsFinished, setEndTime]);
 
   const renderCode = () => {
-    const snippetChars = codeSnippet.split('');
-    const typedChars = typedCode.split('');
+    const snippetWords = codeSnippet.split(/\s+/);
+    const typedWords = typedCode.split(/\s+/);
 
-    return snippetChars.map((char, index) => {
-      let className = 'text-foreground-500';
-      if (index < typedChars.length) {
-        className =
-          char === typedChars[index] ? 'text-green-500' : 'text-red-500';
-      }
+    const currentWordIndex = typedWords.length - 1;
+    const currentCharIndex = typedWords[currentWordIndex]?.length || 0;
+
+    return snippetWords.map((word, wordIndex) => {
+      const snippetChars = word.split('');
+      const typedChars = typedWords[wordIndex]
+        ? typedWords[wordIndex].split('')
+        : [];
+
       return (
-        <span key={index} className={`${className} relative`}>
-          {char}
-          {index === typedChars.length && <BlinkingCursor />}
-        </span>
+        <div className="word" key={wordIndex}>
+          {snippetChars.map((char, charIndex) => {
+            let className = 'text-gray-500';
+            if (charIndex < typedChars.length) {
+              className =
+                char === typedChars[charIndex]
+                  ? 'text-green-500'
+                  : 'text-red-500';
+            }
+            return (
+              <span key={charIndex} className={`${className} relative`}>
+                {char}
+                {wordIndex === currentWordIndex &&
+                  charIndex === currentCharIndex && <BlinkingCursor />}
+              </span>
+            );
+          })}
+          {wordIndex < snippetWords.length - 1 && (
+            <span className="letter-space relative">
+              {' '}
+              {wordIndex === currentWordIndex &&
+                currentCharIndex === snippetChars.length && <BlinkingCursor />}
+            </span>
+          )}
+        </div>
       );
     });
   };
@@ -87,6 +124,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
   return (
     <div className="flex w-full max-w-4xl flex-col items-center justify-start rounded-lg bg-slate-900 shadow-lg">
       <TitleBar title="Code Snippet.js" />
+      {isFinished && <Confetti />}
       {isFinished ? (
         <div className="p-4">
           <h2 className="text-2xl font-bold">Results</h2>
@@ -107,14 +145,14 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ codeSnippet }) => {
         </div>
       ) : (
         <>
-          <div className="p-4">
+          {/* <div className="p-4">
             <p>Correct Words: {correctWords}</p>
             <p>Correct Letters: {correctLetters}</p>
-          </div>
+          </div> */}
           {codeSnippet && (
             <div className="flex-grow overflow-y-auto rounded-b-lg bg-slate-900 p-4">
-              <pre className="text-dracula-foreground mt-2 overflow-x-auto whitespace-pre-wrap rounded p-2">
-                <code>{renderCode()}</code>
+              <pre className="mt-2 rounded p-2 text-typerdev-foreground">
+                <code className="flex flex-wrap">{renderCode()}</code>
               </pre>
             </div>
           )}

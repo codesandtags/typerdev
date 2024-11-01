@@ -7,7 +7,7 @@ const BlinkingCursor: React.FC = () => {
       className="mt-2 bg-yellow-200"
       style={{
         display: 'inline-block',
-        width: '14px',
+        width: '2px',
         height: '1em',
         position: 'absolute',
         top: '-0.4rem',
